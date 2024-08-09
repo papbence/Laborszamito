@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labor Paraméterek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        .container {
+            padding: 20px;
+            justify-content: center;
+        }
+        .section {
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .section h2 {
+            margin: 0;
+            cursor: pointer;
+        }
+        .items {
+            display: none;
+            margin-top: 10px;
+        }
+        .item {
+            margin: 5px 0;
+            padding: 5px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .item.selected {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .total {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+    <script>
+        let baseAmount = 7000;
+
+        function calculateTotal() {
+            let total = baseAmount;
+            const items = document.querySelectorAll('.item');
+            items.forEach(item => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                if (checkbox.checked) {
+                    item.classList.add('selected');
+                    total += parseFloat(checkbox.value);
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+            document.getElementById('total').textContent = 'Végösszeg: ' + Math.round(total) + ' Ft';
+        }
+
+        function toggleItem(item) {
+            const checkbox = item.querySelector('input[type="checkbox"]');
+            checkbox.checked = !checkbox.checked;
+            calculateTotal();
+        }
+
+        function toggleSection(event) {
+            const section = event.currentTarget.parentElement;
+            const items = section.querySelector('.items');
+            items.style.display = items.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</head>
+<body>
+
+<header>
+    <h1>Labor számító</h1>
+</header>
+
+<div class="container">
+    <div class="section">
+        <h2 onclick="toggleSection(event)">Hematológia</h2>
+        <div class="items">
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="1750" style="display:none">
+                    Vörösvértest süllyedés (1750 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="980" style="display:none">
+                    Vérkép (quant. v. sima vérkép) (980 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="2700" style="display:none">
+                    Vérkép + retykulocyta (2700 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="2800" style="display:none">
+                    Perifériás vérkenet festése értékeléssel (csak vérkép vizsgálattal) (2800 Ft)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 onclick="toggleSection(event)">Klinikai Kémia</h2>
+        <div class="items">
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Vércukor (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="4350" style="display:none">
+                    Hemoglobin A1C (HgbA1C) (4350 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Karbamid (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="420" style="display:none">
+                    Kreatinin (+eGFR) (420 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Húgysav (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Nátrium (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Kálium (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Kalcium (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Magnézium (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Klorid (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Vas (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="950" style="display:none">
+                    Transzferrin (950 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="7100" style="display:none">
+                    Szolubilis transzferrin receptor (7100 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="3500" style="display:none">
+                    Ferritin (3500 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="4300" style="display:none">
+                    Folsav (4300 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="4600" style="display:none">
+                    B-12 vitamin (4600 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Összfehérje (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Albumin (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="1900" style="display:none">
+                    CRP (C-reaktív protein) (1900 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="13200" style="display:none">
+                    PCT (prokalcitonin) (13200 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Összkoleszterin (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Triglicerid (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="710" style="display:none">
+                    HDL-koleszterin (710 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="940" style="display:none">
+                    LDL-koleszterin (940 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Totál bilirubin (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    Direkt v. konjugált bilirubin (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    GGT (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    GOT (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    GPT (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    AP (alkalikus foszfatáz) (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="290" style="display:none">
+                    LDH (laktát-dehidrogenáz) (290 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="420" style="display:none">
+                    CK (kreatinin-kínáz) (420 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="690" style="display:none">
+                    Amiláz (690 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="900" style="display:none">
+                    Lipáz (900 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="1700" style="display:none">
+                    Teljes vizelet vizsgálat (rutin + üledék) (1700 Ft)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 onclick="toggleSection(event)">Véralvadási Vizsgálatok</h2>
+        <div class="items">
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="960" style="display:none">
+                    Prothrombin + INR (960 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="1200" style="display:none">
+                    Aktivált parciális tromboplasztin idő (aPTI) (1200 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="1200" style="display:none">
+                    Thrombin idő (TI) (1200 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="1900" style="display:none">
+                    Fibrinogén (1900 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="7400" style="display:none">
+                    D-dimer (7400 Ft)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 onclick="toggleSection(event)">Endokrinológia</h2>
+        <div class="items">
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="2500" style="display:none">
+                    TSH (2500 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="3200" style="display:none">
+                    T3 (3200 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="3200" style="display:none">
+                    T4 (3200 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="10700" style="display:none">
+                    Reverz T3 (10700 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="4100" style="display:none">
+                    FSH (follikulus stimuláló hormon) (4100 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="3900" style="display:none">
+                    LH (luteinizáló hormon) (3900 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="3900" style="display:none">
+                    Ösztradiol (3900 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="4000" style="display:none">
+                    Prolaktin (PRL) (4000 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="4000" style="display:none">
+                    Progeszteron (4000 Ft)
+                </label>
+            </div>
+			<div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="3700" style="display:none">
+                    Totál tesztoszteron	(3700 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="4400" style="display:none">
+                    Kotrizol (szérum) (4400 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="6000" style="display:none">
+                    D-vitamin (6000 Ft)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 onclick="toggleSection(event)">Tumormarkerek</h2>
+        <div class="items">
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="6500" style="display:none">
+                    CA-125 (6500 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="10100" style="display:none">
+                    HE 4 (10100 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="5900" style="display:none">
+                    CA 15-3 (5900 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="7500" style="display:none">
+                    CA 72-4 (7500 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="5900" style="display:none">
+                    CA 19-9 (5900 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="4500" style="display:none">
+                    CEA (4500 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="4100" style="display:none">
+                    PSA (4100 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="5400" style="display:none">
+                    Szabad PSA (5400 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="3800" style="display:none">
+                    AFP (Alfa feto-protein) (3800 Ft)
+                </label>
+            </div>
+        </div>
+    </div>
+
+ <div class="section">
+        <h2 onclick="toggleSection(event)">Mikrobiológia</h2>
+        <div class="items">
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="9410" style="display:none">
+                    Baktérium tenyésztés és rezisztencia vizsgálat (aerob) + sarjadzó gomba (9410)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="10620" style="display:none">
+                    Mycoplasma hominis és Ureaplasma tenyésztés genitális váladékból (rezisztenciával)(10620)
+                </label>
+            </div>
+          
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="9800" style="display:none">
+                    Széklettenyésztés alapvizsgálat Salmonella (gastroenteritist okozó szero- típusok), Campylobacter, Shigella, Yersinia (9800)
+                </label>
+            </div>
+        </div>
+    </div>
+	
+	<div class="section">
+        <h2 onclick="toggleSection(event)">Serologia</h2>
+        <div class="items">
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="8800" style="display:none">
+                    HIV-1,2 antitestek, HIV-1 antigén (8800 Ft)
+                </label>
+            </div>
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="12800" style="display:none">
+                    Herpes simplex vírus (HSV) 1,2 antitestek (IgG, IgM) (12 800 Ft)
+                </label>
+            </div>
+          
+            <div class="item" onclick="toggleItem(this)">
+                <label>
+                    <input type="checkbox" value="8800" style="display:none">
+                    Hepatitis A vírus antitestek (IgG, IgM) (8800 Ft)
+                </label>
+            </div>
+        </div>
+    </div>
+
+<div id="total" class="total">Végösszeg: 7000 Ft</div>
+<div class="footer">Készítette: Pap Bence, 2024</div>
+
+</body>
+</html>
